@@ -230,7 +230,7 @@
                 </div>
             </main>
     
-            <footer class="w-full bg-white text-right p-4">
+            <footer class="w-full bg-white text-right p-4 bottom-0 fixed">
                 Built by <a target="_blank" href="https://esoftgreat.com" class="underline">esoftgreat</a>.
             </footer>
         </div>
