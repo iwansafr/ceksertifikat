@@ -11,6 +11,8 @@ class Login extends Component
     public $email;
     public $password;
 
+    public $successRedirect = false;
+
     #[Title('Login')]
     public function render()
     {
@@ -22,9 +24,10 @@ class Login extends Component
         $this->validate(['email'=>'required','password'=>'required']);
 
         if(Auth::attempt(['email'=>$this->email,'password'=>$this->password],true)){
-
+            $this->successRedirect = true;
+            return redirect('/');
         }else{
-            return session()->flash('message','Email or Password ');
+            return session()->flash('message','Email or Password is invalid');
         }
     }
 }

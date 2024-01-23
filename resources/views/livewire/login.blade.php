@@ -1,53 +1,81 @@
 <div>
-    <div class="w-full lg:w-1/2 mt-6 pl-0 lg:pl-2">
-        <p class="text-xl pb-6 flex items-center">
-            <i class="fas fa-key mr-3"></i> Login
-        </p>
-        <div class="leading-loose">
-            <form class="p-10 bg-white rounded shadow-xl" wire:submit="login">
-                <p class="text-lg text-gray-800 font-medium pb-4">Login</p>
-                @if (session()->has('message'))    
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                        <strong class="font-bold">Login failed!</strong>
-                        <span class="block sm:inline"> {{ session('message') }}.</span>
-                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </span>
-                    </div>
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt="Your Company">
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your
+                account</h2>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            @if ($successRedirect)
+                <button disabled
+                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <p>
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </p>
+                    <p class="ml-2">
+                        Processing ...
+                    </p>
+                </button>
+            @else
+                @if (session()->has('message'))
+                <div>
+                    <p class="text-white bg-red-500 p-5 rounded">
+                        <i class="fas fa-warning"></i>
+                        {{ session('message') }}
+                    </p>
+                </div>
                 @endif
-                <div class="mt-2">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                        Email:
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight @error('email') focus:outline-none focus:shadow-outline border-red-500 @enderror"
-                        id="email" type="email" wire:model="email" placeholder="Enter your email">
-                    <p class="text-red-500 text-xs italic mt-1">
-                        @error('email')
-                            {{ $message }}
-                        @enderror
-                    </p>
-                </div>
-                <div class="mt-2">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Password:
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight @error('password') focus:outline-none focus:shadow-outline border-red-500 @enderror"
-                        id="password" type="password" wire:model="password" placeholder="Enter your password">
-                    <p class="text-red-500 text-xs italic mt-1">
-                        @error('password')
-                            {{ $message }}
-                        @enderror
-                    </p>
-                </div>
-                <div class="mt-2">
-                    <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
-                        <i class="fas fa-sign-in-alt mr-2"></i> Login
-                    </button>
-                </div>
-            </form>
+                <form class="space-y-6" wire:submit="login">
+                    <div>
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                            address</label>
+                        <div class="mt-2">
+                            <input id="email" wire:model="email" name="email" type="email" autocomplete="email"
+                                class="@error('email') border-red-500 border @enderror block w-full rounded-md p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            @error('email')
+                                <p class="text-red-500 text-sm">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <label for="password"
+                                class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                            <div class="text-sm">
+                                <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot
+                                    password?</a>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <input id="password" name="password" type="password" autocomplete="current-password"
+                                wire:model="password"
+                                class="@error('password') border-red-500 border @enderror block w-full rounded-md p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            @error('password')
+                                <p class="text-red-500 text-sm">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign
+                            in</button>
+                    </div>
+                </form>
+
+                <p class="mt-10 text-center text-sm text-gray-500">
+                    Not a member?
+                    <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register</a>
+                </p>
+            @endif
         </div>
     </div>
+
 </div>
