@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::get('add-certificate',function(){
+    return view('add-certificate');
+})->middleware('auth');
+
 Route::get('/login',Login::class);
