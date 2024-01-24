@@ -25,6 +25,7 @@ class Login extends Component
 
         if(Auth::attempt(['email'=>$this->email,'password'=>$this->password],true)){
             $this->successRedirect = true;
+            sleep(1);
             return redirect('/');
         }else{
             return session()->flash('message','Email or Password is invalid');

@@ -20,6 +20,7 @@
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
     </style>
+    @livewireStyles
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
@@ -69,9 +70,7 @@
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 @auth
                     <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                        <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                        <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
-                        <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+                        @livewire('profile-menu')
                     </div>
                 @else
                     <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
@@ -125,10 +124,10 @@
                     <i class="fas fa-user mr-3"></i>
                     My Account
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <button href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Sign Out
-                </a>
+                </button>
                 <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                     <i class="fas fa-arrow-circle-up mr-3"></i> Upgrade to Pro!
                 </button>
@@ -236,11 +235,8 @@
         </div>
         
     </div>
-
-    <!-- AlpineJS -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
-    
+    @livewireScripts
 </body>
 </html>

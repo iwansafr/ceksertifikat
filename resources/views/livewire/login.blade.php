@@ -27,7 +27,10 @@
                     </p>
                 </div>
                 @endif
-                <form class="space-y-6" wire:submit="login">
+                <div wire:loading wire:target="login">
+                    Loading ...
+                </div>
+                <form class="space-y-6" wire:submit="login" wire:loading.remove wire:target="login">
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                             address</label>

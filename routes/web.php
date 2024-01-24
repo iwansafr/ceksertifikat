@@ -23,3 +23,6 @@ Route::get('add-certificate',function(){
 })->middleware('auth');
 
 Route::get('/login',Login::class);
+Route::post('/logout',function(){
+
+});
