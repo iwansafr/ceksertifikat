@@ -22,6 +22,11 @@ Route::get('add-certificate',function(){
     return view('add-certificate');
 })->middleware('auth');
 
+Route::get('certificate-list',function(){
+    return view('certificate-list');
+})->middleware('auth');
+
+
 Route::get('/login',Login::class);
 Route::post('/logout',function(){
 
