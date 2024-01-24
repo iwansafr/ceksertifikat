@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('no_wa');
             $table->string('jenis_pelatihan');
+            $table->text('link')->comment('link sertifikat');
             $table->timestamps();
         });
     }
