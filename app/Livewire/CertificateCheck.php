@@ -3,12 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Peserta;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class CertificateCheck extends Component
 {
     public $no_seri;
     public $certificate;
+
+    #[Title('Cek Sertifikat')]
     public function render()
     {
         return view('livewire.certificate-check');

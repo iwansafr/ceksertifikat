@@ -3,12 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Peserta;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class CertificateList extends Component
 {
     use WithPagination;
+
+    #[Title('List Sertifikat')]
     protected $paginationTheme = 'tailwind';
     public function render()
     {
