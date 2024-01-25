@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', CertificateCheck::class);
 
 Route::get('add-certificate',function(){
     return view('add-certificate');
