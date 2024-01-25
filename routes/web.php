@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CertificateCheck;
 use App\Livewire\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::get('certificate-list',function(){
     return view('certificate-list');
 })->middleware('auth');
 
+Route::get('cek-sertifikat',CertificateCheck::class);
 
 Route::get('/login',Login::class);
 Route::post('/logout',function(){
