@@ -29,7 +29,7 @@ Route::get('certificate-list',function(){
 
 Route::get('cek-sertifikat',CertificateCheck::class);
 
-Route::get('/login',Login::class);
+Route::get('/login',Login::class)->name('login');
 Route::post('/logout',function(){
 
 });
