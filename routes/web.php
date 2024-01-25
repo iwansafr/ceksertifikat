@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', CertificateCheck::class);
 
+Route::get('/admin',function(){
+    return view('certificate-list');
+})->middleware('auth');
+
 Route::get('add-certificate',function(){
     return view('add-certificate');
 })->middleware('auth');
