@@ -30,7 +30,7 @@ Route::get('certificate-list',function(){
 })->middleware('auth');
 
 Route::get('certificate-edit/{id}',function($id){
-    return view('certificate-edit');
+    return view('certificate-edit',['id'=>$id]);
 });
 
 Route::get('cek-sertifikat',CertificateCheck::class);
