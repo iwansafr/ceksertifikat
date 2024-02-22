@@ -4,7 +4,7 @@
         @if (session()->has('message'))
             <div>
                 <p class="text-white bg-green-500 p-5 rounded">
-                    <i class="fas fa-success"></i>
+                    <i class="fa fa-check"></i>
                     {{ session('message') }}
                 </p>
             </div>

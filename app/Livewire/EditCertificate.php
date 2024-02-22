@@ -58,13 +58,20 @@ class EditCertificate extends Component
         ];
         $peserta = Peserta::findOrFail($this->certificateId);
         $this->no_seri = $peserta->no_seri;
+        $this->tahun = $peserta->tahun;
+        $this->nama = $peserta->nama;
+        $this->instansi = $peserta->instansi;
+        $this->email = $peserta->email;
+        $this->no_wa = $peserta->no_wa;
+        $this->jenis_pelatihan = $peserta->jenis_pelatihan;
+        $this->link = $peserta->link;
 
     }
 
     public function save()
     {
         $input = $this->validate([
-            'no_seri'=>'required',
+            'no_seri'=>'required|unique:pesertas,no_seri,'.$this->certificateId,
             'tahun'=>'required',
             'nama'=>'required',
             'instansi'=>'required',
@@ -73,9 +80,10 @@ class EditCertificate extends Component
             'jenis_pelatihan'=>'required',
             'link'=>'required',
         ]);
-
+        
         // Peserta::create($input);
-        // session()->flash('message','Berhasil Simpan Data Peserta');
+        Peserta::where('id',$this->certificateId)->update($input);
+        session()->flash('message','Berhasil Perbarui Data Peserta');
         // $this->resetExcept('form');
     }
     public function render()
