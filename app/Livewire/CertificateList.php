@@ -15,6 +15,10 @@ class CertificateList extends Component
     protected $paginationTheme = 'tailwind';
 
     public $prepareDelete = false;
+    public $no_seri;
+
+    public $pesertaId;
+
     public function render()
     {
         return view('livewire.certificate-list',['pesertaList'=>$this->getPeserta()]);
@@ -25,8 +29,20 @@ class CertificateList extends Component
         return Peserta::paginate(12);
     }
 
-    public function prepareDelete($id)
+    public function setDelete($id)
     {
         $this->prepareDelete = true;
+        $this->no_seri = Peserta::findOrFail($id)->no_seri;
+        $this->pesertaId = $id;
+    }
+    public function cancelDelete()
+    {
+        $this->prepareDelete = false;
+    }
+    public function delete($id)
+    {
+        Peserta::findOrFail($id)->delete();
+        $this->prepareDelete = false;
+        return session()->flash('message','Data Berhasil dihapus');
     }
 }

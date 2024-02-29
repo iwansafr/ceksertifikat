@@ -1,22 +1,33 @@
 <div>
-    @if ($prepareDelete)    
+    @if ($prepareDelete)
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2">Konfirmasi Hapus</div>
                 <p class="text-gray-700 text-base">
-                    Apakah Anda yakin ingin menghapus data tersebut ?
+                    Apakah Anda yakin ingin menghapus data dengan nomor seri <span
+                        class="font-bold">{{ $no_seri ?? '' }}</span> tersebut ?
                 </p>
             </div>
             <div class="px-6 pt-4 pb-2">
-                <button class="focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-red-900">
-                                    <i class="fa fa-trash"></i> Hapus</button>
-                <button class="focus:outline-none text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-grey-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-blue-900">
-                                        <i class="fa fa-sync"></i> Batal</button>
-                
+                <button wire:click="delete({{ $pesertaId ?? 0 }})"
+                    class="focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-red-900">
+                    <i class="fa fa-trash"></i> Hapus</button>
+                <button wire:click="cancelDelete"
+                    class="focus:outline-none text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-grey-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-blue-900">
+                    <i class="fa fa-sync"></i> Batal</button>
+
             </div>
         </div>
-    @else    
+    @else
         <div class="bg-white overflow-auto">
+            @if (session()->has('message'))
+                <div>
+                    <p class="text-white bg-green-500 p-5 rounded">
+                        <i class="fa fa-check"></i>
+                        {{ session('message') }}
+                    </p>
+                </div>
+            @endif
             <table class="min-w-full bg-white">
                 <thead class="bg-gray-800 text-white">
                     <tr>
@@ -38,7 +49,8 @@
                                     class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-yellow-900">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <button wire:click="prepareDelete({{ $item->id }})" class="focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-red-900">
+                                <button wire:click="setDelete({{ $item->id }})"
+                                    class="focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 mr-2 mb-2 dark:focus:ring-red-900">
                                     <i class="fa fa-trash"></i></button>
                                 {{ $item->no_seri }}
                             </td>
